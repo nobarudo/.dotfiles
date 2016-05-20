@@ -29,13 +29,19 @@ alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -lA'
+alias viewcolor='for c in {000..255}; do echo -n "[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
 
 ################################################################
 #  プロンプト
 ################################################################
 
+#{と[の間に特殊文字を挿入
+#入力方法は<C-v><ESC>
+HOST_COLOR='%{[38;5;057m%}'
+MINT_GREEN='%{[38;5;084m%}'
+RESET='%{[0m%}'
 PROMPT="
-[${fg[green]}%n${reset_color}@${fg[blue]}%m${reset_color}] %{${fg[yellow]}%}%~
+[${MINT_GREEN}%n${fg[red]}@${HOST_COLOR}%m${RESET}] ${fg[blue]}%T %{${fg[yellow]}%}%~
 %{${reset_color}%}%#"
 
 # git関連
