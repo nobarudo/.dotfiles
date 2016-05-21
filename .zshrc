@@ -35,13 +35,13 @@ alias viewcolor='for c in {000..255}; do echo -n "[38;5;${c}m $c" ; [ $(($c%16)
 #  プロンプト
 ################################################################
 
-#{と[の間に特殊文字を挿入
-#入力方法は<C-v><ESC>
+# {と[の間に特殊文字を挿入
+# 入力方法は<C-v><ESC>
 HOST_COLOR='%{[38;5;057m%}'
 MINT_GREEN='%{[38;5;084m%}'
 RESET='%{[0m%}'
 PROMPT="
-[${MINT_GREEN}%n${fg[red]}@${HOST_COLOR}%m${RESET}] ${fg[blue]}%T %{${fg[yellow]}%}%~
+[${MINT_GREEN}%n${RESET}@${HOST_COLOR}%m${RESET}] ${fg[red]}%D ${fg[blue]}%T %{${fg[yellow]}%}%~
 %{${reset_color}%}%#"
 
 # git関連
@@ -70,13 +70,13 @@ function get-branch-status() {
     branchname=`get-branch-name`
     output=`${git} status 2> /dev/null`
     if [[ -n `echo $output | grep '^nothing to commit'` ]]; then
-        branchstatus='%{'${fg[green]}'%}⮂%{'${fg[black]}${bg[green]}'%} ⭠ '${branchname}
+        branchstatus='%{'${fg[green]}'%}%{'${fg[black]}${bg[green]}'%} '${branchname}
     elif [[ -n `echo $output | grep '^Untracked files:'` ]]; then
-        branchstatus='%{'${fg[yellow]}'%}⮂%{'${fg[black]}${bg[yellow]}'%} ⭠ '${branchname}
+        branchstatus='%{'${fg[yellow]}'%}%{'${fg[black]}${bg[yellow]}'%} '${branchname}
     elif [[ -n `echo $output | grep '^Changes not staged for commit:'` ]]; then
-        branchstatus='%{'${fg[red]}'%}⮂%{'${fg[black]}${bg[red]}'%} ⭠ '${branchname}
+        branchstatus='%{'${fg[red]}'%}%{'${fg[black]}${bg[red]}'%} '${branchname}
     else
-        branchstatus='%{'${fg[cyan]}'%}⮂%{'${fg[black]}${bg[cyan]}'%} ⭠ '${branchname}
+        branchstatus='%{'${fg[cyan]}'%}%{'${fg[black]}${bg[cyan]}'%} '${branchname}
     fi
     echo ${branchstatus}' '
 }
