@@ -38,11 +38,12 @@ alias v='vim'
 
 # {と[の間に特殊文字を挿入
 # 入力方法は<C-v><ESC>
-HOST_COLOR='%{[38;5;057m%}'
-MINT_GREEN='%{[38;5;084m%}'
+HOST_COLOR='%{[38;5;054m%}'
+MINT_GREEN='%{[38;5;047m%}'
+YELLOW_COLOR='%{[38;5;011m%}'
 RESET='%{[0m%}'
 PROMPT="
-[${MINT_GREEN}%n${RESET}@${HOST_COLOR}%m${RESET}] ${fg[red]}%D ${fg[blue]}%T %{${fg[yellow]}%}%~
+[${MINT_GREEN}%n${RESET}@${HOST_COLOR}%m${RESET}] ${fg[red]}%D ${fg[blue]}%T %{${YELLOW_COLOR}%}%~
 %{${reset_color}%}%#"
 
 # git関連
