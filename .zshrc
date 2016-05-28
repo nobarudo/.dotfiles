@@ -1,3 +1,14 @@
+logo="
+   ,,,,,,,,,,,,,,,,,,,,,,,,       ,llll,        ,,,,,,      ,l''ll    ,,,   ,,lllll,,,  l'''''''''''ll        ,,,,,
+'llllll,,,,,,,,, ,,,,ll'llll      ,l'',ll'     ll ll' ,,,,,,ll 'll,, l,,l  ll  ll'lll' ll lllllll ll          lllll'  ,,,,,,,,,     ,,,,,,,,,
+     ,,ll'lll''  llllll'    ,ll' lll,,,,,      l' ll ''''''''l, ll'''    ,lll   ''ll,ll ,,,,,,, lll         ll l  ll lll  ..,'ll,  ll'  ..llll,
+     l' ll'  .l'         ,,llll, ll,  ,,,,    l 'll,,  ,,,,,ll ll,,    lllll, ,lllll'll ''''''' lll        ll l  ll ll  ll ll  l' l   '
+     'l,,l'll,,,,,,,     ll' ll'  lll ll,,l'' ll  ll  ll '' ll lll ,,lll  ll      llll lllllll lll,   ,,,   l ll  ll l   ll l  ll,'ll,  'lllll
+       '''''ll,ll'     ''''''    'l,,,,ll''''  'l,,ll' ''l,l,,,,,ll''   ''ll,,lll''ll,,,,,,,,,,,,,,,ll  lllll  '''''  '''''   ''   '''lllll'''
+"
+
+printf $logo
+
 ################################################################
 #  環境設定
 ################################################################
@@ -31,6 +42,7 @@ alias ll='ls -l'
 alias lla='ls -lA'
 alias viewcolor='for c in {000..255}; do echo -n "[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
 alias v='vim'
+alias wwd='echo $logo'
 
 ################################################################
 #  プロンプト
