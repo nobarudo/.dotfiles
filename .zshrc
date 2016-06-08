@@ -1,13 +1,21 @@
+PURPLE='[38;5;054m'
+MINTGREEN='[38;5;047m'
+YELLOW_COLOR='[38;5;011m'
+BACKWHITE='[38;5;015m'
+BACKRED='[38;5;160m'
+BACKBLUE='[38;5;004m'
+FONTCOLOR='[38;5;000m'
+reset='[0m'
 logo="
-   ,,,,,,,,,,,,,,,,,,,,,,,,       ,llll,         ,,,,,,      ,l''ll    ,,,   ,,lllll,,,  l'''''''''''ll        ,,,,,
-'llllll,,,,,,,,  ,,,,ll'llll    ,l'',ll'        ll ll' ,,,,,,ll 'll,, l,,l  ll  ll'lll' ll lllllll ll          lllll'  ,,,,,,,,,     ,,,,,,,,,
-     ,,ll'l''  .  llll'     ,ll'  ll,,,         l' ll ''''''''l, ll'''    ,lll   ''ll,ll ,,,,,,, lll         ll l  ll lll  ..,'ll,  ll'  ..llll,
-     l' ll'  .l'         ,,llll, ll,  ,,,   ,. l 'll,,  ,,,,,ll ll,,    lllll, ,lllll'll ''''''' lll         ll l  ll ll  ll ll  l' l   '
-     'l,,l' l,,,,,,,     ll' ll'  lll ll,,,''  ll  ll  ll '' ll lll ,,lll  ll      llll lllllll lll,   ,,,   l ll  ll l   ll ll  l,'ll,  'llllll
-       '''ll,llll'       ''''      l,,,,ll''   'l,,ll' ''l,l,,,,ll''    ''ll,,lll''ll,,,,,,,,,,,,,,,ll..ll ll  '''''  ''''' ''''   '''lllll'''
+${MINTGREEN}   ,,,,,,,,,,,,,,,,,,,,,,,,  ${BACKWHITE}     ,llll,        ${BACKRED} ,,,,,,      ,l''ll    ,,${PURPLE},   ,,lllll,,,  l'''''''''''${BACKBLUE}ll        ,,,,,      ${YELLOW_COLOR}                      ${reset-color}
+${MINTGREEN}'llllll,,,,,,,,  ,,,,ll'llll  ${BACKWHITE}  ,l'',ll'        ${BACKRED}ll ll' ,,,,,,ll 'll,, l,,${PURPLE}l  ll  ll'lll' ll lllllll ll${BACKBLUE}          lllll'  ,,,${YELLOW_COLOR},,,,,,     ,,,,,,,,,  ${reset-color}
+${MINTGREEN}     ,,ll'l''  .  llll'  ${BACKWHITE}   ,ll'  ll,,,         ${BACKRED}l' ll ''''''''l, ll'''   ${PURPLE} ,lll   ''ll,ll ,,,,,,, lll ${BACKBLUE}        ll l  ll lll ${YELLOW_COLOR} ..,'ll,  ll'  ..llll,${reset-color}
+${MINTGREEN}     l' ll'  .l'         ${BACKWHITE},,llll, ll,  ,,,   ,. ${BACKRED}l 'll,,  ,,,,,ll ll,,    l${PURPLE}llll, ,lllll'll ''''''' lll ${BACKBLUE}        ll l  ll ll  ${YELLOW_COLOR}ll ll  l' l   '       ${reset-color}
+${MINTGREEN}     'l,,l' l,,,,,,,     ${BACKWHITE}ll' ll'  lll ll,,,''  ${BACKRED}ll  ll  ll '' ll lll ,,lll${PURPLE}  ll      llll lllllll lll, ${BACKBLUE}  ,,,   l ll  ll l   ${YELLOW_COLOR}ll ll  l,'ll,  'llllll${reset-color}
+${MINTGREEN}       '''ll,llll'       ${BACKWHITE}''''      l,,,,ll''   ${BACKRED}'l,,ll' ''l,l,,,,ll''    '${PURPLE}'ll,,lll''ll,,,,,,,,,,,,,,,l${BACKBLUE}l..ll ll  '''''  ''''${YELLOW_COLOR}' ''''   '''lllll'''  ${reset-color}
 "
 
-printf $logo
+#printf $logo
 
 ################################################################
 #  環境設定
@@ -53,9 +61,9 @@ alias wwd='echo $logo'
 HOST_COLOR='%{[38;5;054m%}'
 MINT_GREEN='%{[38;5;047m%}'
 YELLOW_COLOR='%{[38;5;011m%}'
-RESET='%{[0m%}'
+reset='%{[0m%}'
 PROMPT="
-[${MINT_GREEN}%n${RESET}@${HOST_COLOR}%m${RESET}] ${fg[red]}%D ${fg[blue]}%T %{${YELLOW_COLOR}%}%~
+[${MINT_GREEN}%n${reset_color}@${HOST_COLOR}%m${reset_color}] ${fg[red]}%D ${fg[blue]}%T %{${YELLOW_COLOR}%}%~
 %{${reset_color}%}--> "
 
 # git関連
@@ -84,13 +92,13 @@ function get-branch-status() {
     branchname=`get-branch-name`
     output=`${git} status 2> /dev/null`
     if [[ -n `echo $output | grep '^nothing to commit'` ]]; then
-        branchstatus='%{'${fg[green]}'%}%{'${fg[black]}${bg[green]}' %} '${branchname}
+        branchstatus='%{'${fg[green]}'%}%{'${fg[black]}${bg[green]}' %} \ue0a0 '${branchname}
     elif [[ -n `echo $output | grep '^Untracked files:'` ]]; then
-        branchstatus='%{'${fg[yellow]}'%}%{'${fg[black]}${bg[yellow]}' %} '${branchname}
+        branchstatus='%{'${fg[yellow]}'%}%{'${fg[black]}${bg[yellow]}' %} \ue0a0 '${branchname}
     elif [[ -n `echo $output | grep '^Changes not staged for commit:'` ]]; then
-        branchstatus='%{'${fg[red]}'%}%{'${fg[black]}${bg[red]}' %} '${branchname}
+        branchstatus='%{'${fg[red]}'%}%{'${fg[black]}${bg[red]}' %} \ue0a0 '${branchname}
     else
-        branchstatus='%{'${fg[cyan]}'%}%{'${fg[black]}${bg[cyan]}' %} '${branchname}
+        branchstatus='%{'${fg[cyan]}'%}%{'${fg[black]}${bg[cyan]}' %} \ue0a0 '${branchname}
     fi
     echo ${branchstatus}' '
 }
