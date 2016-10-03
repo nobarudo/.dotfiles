@@ -51,6 +51,12 @@ alias lla='ls -lA'
 alias viewcolor='for c in {000..255}; do echo -n "[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
 alias v='vim'
 alias wwd='echo $logo'
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset'"
+alias gs="git status"
+alias gd="git diff"
+alias gin="git init"
+alias ga="git add"
+alias gc="git commit -m"
 
 ################################################################
 #  プロンプト
