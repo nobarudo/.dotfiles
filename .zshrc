@@ -7,12 +7,12 @@ BACKBLUE='[38;5;004m'
 FONTCOLOR='[38;5;000m'
 reset='[0m'
 logo="
-${MINTGREEN}   ,,,,,,,,,,,,,,,,,,,,,,,,  ${BACKWHITE}     ,llll,        ${BACKRED} ,,,,,,      ,l''ll    ,,${PURPLE},   ,,lllll,,,  l'''''''''''${BACKBLUE}ll        ,,,,,      ${YELLOW_COLOR}                      ${reset-color}
-${MINTGREEN}'llllll,,,,,,,,  ,,,,ll'llll  ${BACKWHITE}  ,l'',ll'        ${BACKRED}ll ll' ,,,,,,ll 'll,, l,,${PURPLE}l  ll  ll'lll' ll lllllll ll${BACKBLUE}          lllll'  ,,,${YELLOW_COLOR},,,,,,     ,,,,,,,,,  ${reset-color}
+${MINTGREEN}   ,,,,,,,,,,,,,,,,,,,,,,,,  ${BACKWHITE}     ,llll,        ${BACKRED} ,,,,,,      ,l''ll    ,,,  ${PURPLE} ,,lllll,,,  l'''''''''''ll  ${BACKBLUE}      ,,,,,      ${YELLOW_COLOR}                      ${reset-color}
+${MINTGREEN}'llllll,,,,,,,,  ,,,,ll'llll  ${BACKWHITE}  ,l'',ll'        ${BACKRED}ll ll' ,,,,,,ll 'll,, l,,l  ${PURPLE}ll  ll'lll' ll lllllll ll${BACKBLUE}          lllll'  ,,,${YELLOW_COLOR},,,,,,     ,,,,,,,,,  ${reset-color}
 ${MINTGREEN}     ,,ll'l''  .  llll'  ${BACKWHITE}   ,ll'  ll,,,         ${BACKRED}l' ll ''''''''l, ll'''   ${PURPLE} ,lll   ''ll,ll ,,,,,,, lll ${BACKBLUE}        ll l  ll lll ${YELLOW_COLOR} ..,'ll,  ll'  ..llll,${reset-color}
-${MINTGREEN}     l' ll'  .l'         ${BACKWHITE},,llll, ll,  ,,,   ,. ${BACKRED}l 'll,,  ,,,,,ll ll,,    l${PURPLE}llll, ,lllll'll ''''''' lll ${BACKBLUE}        ll l  ll ll  ${YELLOW_COLOR}ll ll  l' l   '       ${reset-color}
-${MINTGREEN}     'l,,l' l,,,,,,,     ${BACKWHITE}ll' ll'  lll ll,,,''  ${BACKRED}ll  ll  ll '' ll lll ,,lll${PURPLE}  ll      llll lllllll lll, ${BACKBLUE}  ,,,   l ll  ll l   ${YELLOW_COLOR}ll ll  l,'ll,  'llllll${reset-color}
-${MINTGREEN}       '''ll,llll'       ${BACKWHITE}''''      l,,,,ll''   ${BACKRED}'l,,ll' ''l,l,,,,ll''    '${PURPLE}'ll,,lll''ll,,,,,,,,,,,,,,,l${BACKBLUE}l..ll ll  '''''  ''''${YELLOW_COLOR}' ''''   '''lllll'''  ${reset-color}
+${MINTGREEN}     l' ll'  .l'         ${BACKWHITE},,llll, ll,  ,,,   ,. ${BACKRED}l 'll,,  ,,,,,ll ll,,   ${PURPLE} lllll, ,lllll'll ''''''' lll ${BACKBLUE}        ll l  ll ll  ${YELLOW_COLOR}ll ll  l' l   '       ${reset-color}
+${MINTGREEN}     'l,,l' l,,,,,,,     ${BACKWHITE}ll' ll'  lll ll,,,''  ${BACKRED}ll  ll  ll '' ll lll ,,${PURPLE}lll  ll      llll lllllll lll, ${BACKBLUE}  ,,,   l ll  ll l   ${YELLOW_COLOR}ll ll  l,'ll,  'llllll${reset-color}
+${MINTGREEN}       '''ll,llll'       ${BACKWHITE}''''      l,,,,ll''   ${BACKRED}'l,,ll' ''l,l,,,,ll''   ${PURPLE} ''ll,,lll''ll,,,,,,,,,,,,,,,l${BACKBLUE}l..ll ll  '''''  ''''${YELLOW_COLOR}' ''''   '''lllll'''  ${reset-color}
 "
 
 #printf $logo
