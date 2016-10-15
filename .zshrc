@@ -102,7 +102,7 @@ function get-branch-status() {
     elif [[ -n `echo $output | grep '^Untracked files:'` ]]; then
         branchstatus='%{'${fg[yellow]}'%}%{'${fg[black]}${bg[yellow]}'%} \ue0a0 '${branchname}
     elif [[ -n `echo $output | grep '^Changes not staged for commit:'` ]]; then
-        branchstatus='%{'${fg[red]}'%}%{'${fg[black]}${bg[red]}'%} \ue0a0 ' ${branchname}
+        branchstatus='%{'${fg[red]}'%}%{'${fg[black]}${bg[red]}'%} \ue0a0 '${branchname}
     else
         branchstatus='%{'${fg[cyan]}'%}%{'${fg[black]}${bg[cyan]}'%} \ue0a0 '${branchname}
     fi
