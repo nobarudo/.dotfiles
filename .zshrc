@@ -58,6 +58,19 @@ alias gin="git init"
 alias ga="git add"
 alias gc="git commit -m"
 
+source ~/.zplug/init.zsh
+
+zplug 'zsh-users/zsh-syntax-highlighting'
+
+if ! zplug check --verbose; then
+  printf 'Install? [y/N]: '
+  if read -q; then
+    echo; zplug install
+  fi
+fi
+
+zplug load --verbose
+
 ################################################################
 #  プロンプト
 ################################################################
