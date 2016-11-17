@@ -31,10 +31,16 @@ colors
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
 SAVEHIST=100000
+setopt hist_ignore_all_dups
 setopt hist_ignore_dups
+setopt hist_save_no_dups
 setopt share_history
 setopt auto_param_slash
 setopt mark_dirs
+setopt no_beep
+setopt correct
+
+SPROMPT="correct: %R -> %r ? [No/Yes/Abort/Edit]"
 
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -44,8 +50,6 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 
 # ファイル補完候補に色を付ける
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-setopt no_beep
 
 ################################################################
 #  エイリアス
@@ -64,6 +68,10 @@ alias gd="git diff"
 alias gin="git init"
 alias ga="git add"
 alias gc="git commit -m"
+
+################################################################
+#  plugin
+################################################################
 
 source ~/.zplug/init.zsh
 
