@@ -33,10 +33,17 @@ HISTSIZE=100000
 SAVEHIST=100000
 setopt hist_ignore_dups
 setopt share_history
+setopt auto_param_slash
+setopt mark_dirs
 
 zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
+
+export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+
+# ファイル補完候補に色を付ける
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 setopt no_beep
 
