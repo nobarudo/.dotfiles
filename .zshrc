@@ -1,22 +1,3 @@
-PURPLE='[38;5;054m'
-MINTGREEN='[38;5;047m'
-YELLOW_COLOR='[38;5;011m'
-BACKWHITE='[38;5;015m'
-BACKRED='[38;5;160m'
-BACKBLUE='[38;5;004m'
-FONTCOLOR='[38;5;000m'
-reset='[0m'
-logo="
-${MINTGREEN}   ,,,,,,,,,,,,,,,,,,,,,,,,  ${BACKWHITE}     ,llll,        ${BACKRED} ,,,,,,      ,l''ll    ,,,  ${PURPLE} ,,lllll,,,  l'''''''''''ll  ${BACKBLUE}      ,,,,,      ${YELLOW_COLOR}                      ${reset-color}
-${MINTGREEN}'llllll,,,,,,,,  ,,,,ll'llll  ${BACKWHITE}  ,l'',ll'        ${BACKRED}ll ll' ,,,,,,ll 'll,, l,,l  ${PURPLE}ll  ll'lll' ll lllllll ll${BACKBLUE}          lllll'  ,,,${YELLOW_COLOR},,,,,,     ,,,,,,,,,  ${reset-color}
-${MINTGREEN}     ,,ll'l''  .  llll'  ${BACKWHITE}   ,ll'  ll,,,         ${BACKRED}l' ll ''''''''l, ll'''   ${PURPLE} ,lll   ''ll,ll ,,,,,,, lll ${BACKBLUE}        ll l  ll lll ${YELLOW_COLOR} ..,'ll,  ll'  ..llll,${reset-color}
-${MINTGREEN}     l' ll'  .l'         ${BACKWHITE},,llll, ll,  ,,,   ,. ${BACKRED}l 'll,,  ,,,,,ll ll,,   ${PURPLE} lllll, ,lllll'll ''''''' lll ${BACKBLUE}        ll l  ll ll  ${YELLOW_COLOR}ll ll  l' l   '       ${reset-color}
-${MINTGREEN}     'l,,l' l,,,,,,,     ${BACKWHITE}ll' ll'  lll ll,,,''  ${BACKRED}ll  ll  ll '' ll lll ,,${PURPLE}lll  ll      llll lllllll lll, ${BACKBLUE}  ,,,   l ll  ll l   ${YELLOW_COLOR}ll ll  l,'ll,  'llllll${reset-color}
-${MINTGREEN}       '''ll,llll'       ${BACKWHITE}''''      l,,,,ll''   ${BACKRED}'l,,ll' ''l,l,,,,ll''   ${PURPLE} ''ll,,lll''ll,,,,,,,,,,,,,,,l${BACKBLUE}l..ll ll  '''''  ''''${YELLOW_COLOR}' ''''   '''lllll'''  ${reset-color}
-"
-
-#printf $logo
-
 ################################################################
 #  環境設定
 ################################################################
@@ -39,6 +20,7 @@ setopt auto_param_slash
 setopt mark_dirs
 setopt no_beep
 setopt correct
+setopt list_types
 
 SPROMPT="correct: %R -> %r ? [No/Yes/Abort/Edit]"
 
@@ -52,20 +34,21 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 function cd() {
-  builtin cd $@ && ls;
+  builtin cd $@ && ls --color=auto -F;
 }
 
 ################################################################
 #  エイリアス
 ################################################################
 
-alias ls='ls --color=auto'
+alias ls='ls --color=auto -F'
 alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -lA'
+alias cp='cp -i'
+alias rm='rm -i'
 alias viewcolor='for c in {000..255}; do echo -n "[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
 alias v='vim'
-alias wwd='echo $logo'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset'"
 alias gs="git status"
 alias gd="git diff"
@@ -140,3 +123,24 @@ function get-branch-status() {
     fi
     echo ${branchstatus}' '
 }
+
+PURPLE='[38;5;054m'
+MINTGREEN='[38;5;047m'
+YELLOW_COLOR='[38;5;011m'
+BACKWHITE='[38;5;015m'
+BACKRED='[38;5;160m'
+BACKBLUE='[38;5;004m'
+FONTCOLOR='[38;5;000m'
+reset='[0m'
+logo="
+${MINTGREEN}   ,,,,,,,,,,,,,,,,,,,,,,,,  ${BACKWHITE}     ,llll,        ${BACKRED} ,,,,,,      ,l''ll    ,,,  ${PURPLE} ,,lllll,,,  l'''''''''''ll  ${BACKBLUE}      ,,,,,      ${YELLOW_COLOR}                      ${reset-color}
+${MINTGREEN}'llllll,,,,,,,,  ,,,,ll'llll  ${BACKWHITE}  ,l'',ll'        ${BACKRED}ll ll' ,,,,,,ll 'll,, l,,l  ${PURPLE}ll  ll'lll' ll lllllll ll${BACKBLUE}          lllll'  ,,,${YELLOW_COLOR},,,,,,     ,,,,,,,,,  ${reset-color}
+${MINTGREEN}     ,,ll'l''  .  llll'  ${BACKWHITE}   ,ll'  ll,,,         ${BACKRED}l' ll ''''''''l, ll'''   ${PURPLE} ,lll   ''ll,ll ,,,,,,, lll ${BACKBLUE}        ll l  ll lll ${YELLOW_COLOR} ..,'ll,  ll'  ..llll,${reset-color}
+${MINTGREEN}     l' ll'  .l'         ${BACKWHITE},,llll, ll,  ,,,   ,. ${BACKRED}l 'll,,  ,,,,,ll ll,,   ${PURPLE} lllll, ,lllll'll ''''''' lll ${BACKBLUE}        ll l  ll ll  ${YELLOW_COLOR}ll ll  l' l   '       ${reset-color}
+${MINTGREEN}     'l,,l' l,,,,,,,     ${BACKWHITE}ll' ll'  lll ll,,,''  ${BACKRED}ll  ll  ll '' ll lll ,,${PURPLE}lll  ll      llll lllllll lll, ${BACKBLUE}  ,,,   l ll  ll l   ${YELLOW_COLOR}ll ll  l,'ll,  'llllll${reset-color}
+${MINTGREEN}       '''ll,llll'       ${BACKWHITE}''''      l,,,,ll''   ${BACKRED}'l,,ll' ''l,l,,,,ll''   ${PURPLE} ''ll,,lll''ll,,,,,,,,,,,,,,,l${BACKBLUE}l..ll ll  '''''  ''''${YELLOW_COLOR}' ''''   '''lllll'''  ${reset-color}
+"
+
+#printf $logo
+
+alias wwd='echo $logo'
