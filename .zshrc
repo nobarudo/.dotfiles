@@ -21,6 +21,7 @@ setopt mark_dirs
 setopt no_beep
 setopt correct
 setopt list_types
+setopt no_flow_control
 
 SPROMPT="correct: %R -> %r ? [No/Yes/Abort/Edit]"
 
@@ -32,10 +33,6 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 
 # ファイル補完候補に色を付ける
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-function cd() {
-  builtin cd $@ && ls --color=auto -F;
-}
 
 ################################################################
 #  エイリアス
@@ -63,6 +60,7 @@ alias gc="git commit -m"
 source ~/.zplug/init.zsh
 
 zplug 'zsh-users/zsh-syntax-highlighting'
+zplug 'zsh-users/zsh-history-substring-search'
 
 if ! zplug check --verbose; then
   printf 'Install? [y/N]: '
@@ -72,6 +70,13 @@ if ! zplug check --verbose; then
 fi
 
 zplug load --verbose
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 ################################################################
 #  プロンプト
@@ -122,6 +127,10 @@ function get-branch-status() {
         branchstatus='%{'${fg[cyan]}'%}%{'${fg[black]}${bg[cyan]}'%} \ue0a0 '${branchname}
     fi
     echo ${branchstatus}' '
+}
+
+function cd() {
+  builtin cd $@ && ls;
 }
 
 PURPLE='[38;5;054m'
