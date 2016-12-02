@@ -2,7 +2,7 @@
 #  環境設定
 ################################################################
 export LANG=ja_JP.UTF-8
-
+export TERM=xterm-256color
 autoload -Uz compinit
 compinit
 
