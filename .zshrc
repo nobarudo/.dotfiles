@@ -29,7 +29,14 @@ zstyle ':completion:*:default' menu select=2
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' ignore-parents parent pwd ..
 
-export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+
+## slarized
+eval $(dircolors $HOME/.solarized/dircolors.256dark)
+
+## set color when completion
+if [ -n "$LS_COLORS" ]; then
+    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+fi
 
 # ファイル補完候補に色を付ける
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -61,6 +68,7 @@ source ~/.zplug/init.zsh
 
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'zsh-users/zsh-history-substring-search'
+zplug 'zsh-users/zsh-autosuggestions'
 
 if ! zplug check --verbose; then
   printf 'Install? [y/N]: '
@@ -77,6 +85,11 @@ bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+if zplug check zsh-users/zsh-autosuggestions; then
+  bindkey '^[i' autosuggest-accept
+  bindkey '^[m' autosuggest-execute
+fi
 
 ################################################################
 #  プロンプト
