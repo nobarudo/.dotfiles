@@ -101,46 +101,55 @@ HOST_COLOR='%{[38;5;054m%}'
 MINT_GREEN='%{[38;5;047m%}'
 YELLOW_COLOR='%{[38;5;011m%}'
 reset='%{[0m%}'
+
+autoload -Uz vcs_info
+setopt prompt_subst
+precmd() { vcs_info }
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
+zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+
 PROMPT="
-[${MINT_GREEN}%n${reset_color}@${HOST_COLOR}%m${reset_color}] ${fg[red]}%D ${fg[blue]}%T %{${YELLOW_COLOR}%}%~
+[${MINT_GREEN}%n${reset_color}@${HOST_COLOR}%m${reset_color}] ${fg[red]}%D ${fg[blue]}%T "'${vcs_info_msg_0_}'" %{${YELLOW_COLOR}%}%~
 %{${reset_color}%}--> "
 
 # git関連
-RPROMPT=$'`branch-status-check`'
+#RPROMPT=$'`branch-status-check`'
 # 表示毎にPROMPTで設定されている文字列を評価する
-setopt prompt_subst
 # fg[color]表記と$reset_colorを使いたい
 # @see https://wiki.archlinux.org/index.php/zsh
-function branch-status-check() {
-    local branchname suffix
-    # .gitの中だから除外
-    [[ '$PWD' =~ '/\.git(/.*)?$' ]] && return
-    branchname=`get-branch-name`
-    # ブランチ名が無いので除外
-    [[ -z $branchname ]] && return
-    suffix='%{'${reset_color}'%}'
-    echo `get-branch-status`${suffix}
-}
-function get-branch-name() {
-    local git==git
-    # gitディレクトリじゃない場合のエラーを捨てる
-    echo `${git} rev-parse --abbrev-ref HEAD 2> /dev/null`
-}
-function get-branch-status() {
-    local git==git branchstatus branchname
-    branchname=`get-branch-name`
-    output=`${git} status 2> /dev/null`
-    if [[ -n `echo $output | grep '^nothing to commit'` ]]; then
-        branchstatus='%{'${fg[green]}'%}%{'${fg[black]}${bg[green]}'%} \ue0a0 '${branchname}
-    elif [[ -n `echo $output | grep '^Untracked files:'` ]]; then
-        branchstatus='%{'${fg[yellow]}'%}%{'${fg[black]}${bg[yellow]}'%} \ue0a0 '${branchname}
-    elif [[ -n `echo $output | grep '^Changes not staged for commit:'` ]]; then
-        branchstatus='%{'${fg[red]}'%}%{'${fg[black]}${bg[red]}'%} \ue0a0 '${branchname}
-    else
-        branchstatus='%{'${fg[cyan]}'%}%{'${fg[black]}${bg[cyan]}'%} \ue0a0 '${branchname}
-    fi
-    echo ${branchstatus}' '
-}
+#function branch-status-check() {
+#    local branchname suffix
+#    # .gitの中だから除外
+#    [[ '$PWD' =~ '/\.git(/.*)?$' ]] && return
+#    branchname=`get-branch-name`
+#    # ブランチ名が無いので除外
+#    [[ -z $branchname ]] && return
+#    suffix='%{'${reset_color}'%}'
+#    echo `get-branch-status`${suffix}
+#}
+#function get-branch-name() {
+#    local git==git
+#    # gitディレクトリじゃない場合のエラーを捨てる
+#    echo `${git} rev-parse --abbrev-ref HEAD 2> /dev/null`
+#}
+#function get-branch-status() {
+#    local git==git branchstatus branchname
+#    branchname=`get-branch-name`
+#    output=`${git} status 2> /dev/null`
+#    if [[ -n `echo $output | grep '^nothing to commit'` ]]; then
+#        branchstatus='%{'${fg[green]}'%}%{'${fg[black]}${bg[green]}'%} \ue0a0 '${branchname}
+#    elif [[ -n `echo $output | grep '^Untracked files:'` ]]; then
+#        branchstatus='%{'${fg[yellow]}'%}%{'${fg[black]}${bg[yellow]}'%} \ue0a0 '${branchname}
+#    elif [[ -n `echo $output | grep '^Changes not staged for commit:'` ]]; then
+#        branchstatus='%{'${fg[red]}'%}%{'${fg[black]}${bg[red]}'%} \ue0a0 '${branchname}
+#    else
+#        branchstatus='%{'${fg[cyan]}'%}%{'${fg[black]}${bg[cyan]}'%} \ue0a0 '${branchname}
+#    fi
+#    echo ${branchstatus}' '
+#}
 
 function cd() {
   builtin cd $@ && ls;
