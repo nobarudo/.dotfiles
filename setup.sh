@@ -2,7 +2,7 @@ ln -fsv $HOME/.dotfiles/.tmux.conf $HOME/.tmux.conf
 ln -fsv $HOME/.dotfiles/.zshrc $HOME/.zshrc
 
 if [ ! -d ~/.zplug ]; then
-  curl -sL zplug.sh/installer | zsh
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 fi
 
 if [ ! -d ~/.solarized ]; then
