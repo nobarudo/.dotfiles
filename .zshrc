@@ -175,3 +175,8 @@ ${MINTGREEN}       '''ll,llll'       ${BACKWHITE}''''      l,,,,ll''   ${BACKRED
 #printf $logo
 
 alias wwd='echo $logo'
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+export GOPATH=~/develop/go
+export PATH=$PATH:$GOPATH/bin
