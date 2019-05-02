@@ -68,6 +68,7 @@ source ~/.zplug/init.zsh
 zplug 'zsh-users/zsh-syntax-highlighting'
 zplug 'zsh-users/zsh-history-substring-search'
 zplug 'zsh-users/zsh-autosuggestions'
+zplug 'mollifier/cd-gitroot'
 
 if ! zplug check --verbose; then
   printf 'Install? [y/N]: '
@@ -78,16 +79,22 @@ fi
 
 zplug load --verbose
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
+if zplug check zsh-users/zsh-history-substring-search; then
+  bindkey '^[[A' history-substring-search-up
+  bindkey '^[[B' history-substring-search-down
+  bindkey -M emacs '^P' history-substring-search-up
+  bindkey -M emacs '^N' history-substring-search-down
+  bindkey -M vicmd 'k' history-substring-search-up
+  bindkey -M vicmd 'j' history-substring-search-down
+fi
 
 if zplug check zsh-users/zsh-autosuggestions; then
   bindkey '^[i' autosuggest-accept
   bindkey '^[m' autosuggest-execute
+fi
+
+if zplug check mollifier/cd-gitroot; then
+  alias cdu='cd-gitroot'
 fi
 
 ################################################################
@@ -117,15 +124,6 @@ PROMPT="
 function cd() {
   builtin cd $@ && ls;
 }
-
-PURPLE='[38;5;054m'
-MINTGREEN='[38;5;047m'
-YELLOW_COLOR='[38;5;011m'
-BACKWHITE='[38;5;015m'
-BACKRED='[38;5;160m'
-BACKBLUE='[38;5;004m'
-FONTCOLOR='[38;5;000m'
-reset='[0m'
 
 #export PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
