@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ################################################################
 #  環境設定
 ################################################################
@@ -23,22 +30,7 @@ setopt correct
 setopt list_types
 setopt no_flow_control
 
-SPROMPT="correct: %R -> %r ? [No/Yes/Abort/Edit]"
 
-zstyle ':completion:*:default' menu select=2
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-zstyle ':completion:*' ignore-parents parent pwd ..
-
-## slarized
-eval $(dircolors $HOME/.solarized/dircolors.256dark)
-
-## set color when completion
-if [ -n "$LS_COLORS" ]; then
-    zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-fi
-
-# ファイル補完候補に色を付ける
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 ################################################################
 #  エイリアス
@@ -50,76 +42,18 @@ alias ll='ls -l'
 alias lla='ls -lA'
 alias cp='cp -i'
 alias rm='rm -i'
-alias viewcolor='for c in {000..255}; do echo -n "[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done'
-alias v='vim'
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset - %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%C(yellow)%d%Creset'"
 alias gs="git status"
 alias gd="git diff"
 alias gin="git init"
 alias ga="git add"
-alias gc="git commit -m"
-
-################################################################
-#  plugin
-################################################################
-
-source ~/.zplug/init.zsh
-
-zplug 'zsh-users/zsh-syntax-highlighting'
-zplug 'zsh-users/zsh-history-substring-search'
-zplug 'zsh-users/zsh-autosuggestions'
-zplug 'mollifier/cd-gitroot'
-
-if ! zplug check --verbose; then
-  printf 'Install? [y/N]: '
-  if read -q; then
-    echo; zplug install
-  fi
-fi
-
-zplug load --verbose
-
-if zplug check zsh-users/zsh-history-substring-search; then
-  bindkey '^[[A' history-substring-search-up
-  bindkey '^[[B' history-substring-search-down
-  bindkey -M emacs '^P' history-substring-search-up
-  bindkey -M emacs '^N' history-substring-search-down
-  bindkey -M vicmd 'k' history-substring-search-up
-  bindkey -M vicmd 'j' history-substring-search-down
-fi
-
-if zplug check zsh-users/zsh-autosuggestions; then
-  bindkey '^[i' autosuggest-accept
-  bindkey '^[m' autosuggest-execute
-fi
-
-if zplug check mollifier/cd-gitroot; then
-  alias cdu='cd-gitroot'
-fi
 
 ################################################################
 #  プロンプト
 ################################################################
 
-# {と[の間に特殊文字を挿入
-# 入力方法は<C-v><ESC>
-HOST_COLOR='%{[38;5;054m%}'
-MINT_GREEN='%{[38;5;047m%}'
-YELLOW_COLOR='%{[38;5;011m%}'
-reset='%{[0m%}'
-
-autoload -Uz vcs_info
-setopt prompt_subst
-precmd() { vcs_info }
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-
-PROMPT="
-[${MINT_GREEN}%n${reset_color}@${HOST_COLOR}%m${reset_color}] ${fg[red]}%D ${fg[blue]}%T "'${vcs_info_msg_0_}'" %{${YELLOW_COLOR}%}%~
-%{${reset_color}%}--> "
+source ~/.zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 function cd() {
   builtin cd $@ && ls;
@@ -128,5 +62,7 @@ function cd() {
 #export PATH="$HOME/.rbenv/bin:$PATH"
 #eval "$(rbenv init -)"
 
-export GOPATH=~/develop/go
+eval "$(~/homebrew/bin/brew shellenv)"
+export GOPATH=$(go env GOPATH)
 export PATH=$PATH:$GOPATH/bin
+export PATH=$HOME/.nodebrew/current/bin:$PATH
