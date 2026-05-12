@@ -47,6 +47,7 @@ alias gs="git status"
 alias gd="git diff"
 alias gin="git init"
 alias ga="git add"
+alias v="nvim"
 
 ################################################################
 #  プロンプト
