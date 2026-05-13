@@ -1,20 +1,9 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ################################################################
 #  環境設定
 ################################################################
 export LANG=ja_JP.UTF-8
-export TERM=screen-256color
 autoload -Uz compinit
 compinit
-
-autoload -U colors
-colors
 
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
@@ -29,8 +18,6 @@ setopt no_beep
 setopt correct
 setopt list_types
 setopt no_flow_control
-
-
 
 ################################################################
 #  エイリアス
@@ -53,17 +40,7 @@ alias v="nvim"
 #  プロンプト
 ################################################################
 
-source ~/.zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 function cd() {
   builtin cd $@ && ls;
 }
 
-#export PATH="$HOME/.rbenv/bin:$PATH"
-#eval "$(rbenv init -)"
-
-eval "$(~/homebrew/bin/brew shellenv)"
-export GOPATH=$(go env GOPATH)
-export PATH=$PATH:$GOPATH/bin
-export PATH=$HOME/.nodebrew/current/bin:$PATH
