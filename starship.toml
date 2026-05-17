@@ -4,7 +4,7 @@
 add_newline = true
 
 format = """
-$os$directory $git_branch$git_status $fill$cmd_duration $time
+$os$directory $git_branch$git_status $fill$rust$nodejs$golang$c$cmd_duration $time
 $character"""
 
 right_format = """"""
@@ -45,6 +45,18 @@ deleted = "✘ "
 [fill]
 symbol = " "
 style = "blue"
+
+[c]
+format = '[  $version](bold cyan)'
+
+[golang]
+format = '[󰟓  $version](bold cyan) '
+
+[nodejs]
+format = '[󰎙  $version](bold green) '
+
+[rust]
+format = '[ $version](red bold)'
 
 [cmd_duration]
 min_time = 2000 
