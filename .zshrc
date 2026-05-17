@@ -44,3 +44,4 @@ function cd() {
   builtin cd $@ && ls;
 }
 
+eval "$(starship init zsh)"

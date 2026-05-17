@@ -37,3 +37,15 @@ if ! grep -q "powerlevel10k.zsh-theme" "$ZSHRC_REAL"; then
   echo "$P10K_SOURCE" >>"$ZSHRC_REAL"
   echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >>"$ZSHRC_REAL"
 fi
+
+if ! command -v starship &>/dev/null; then
+  echo "Installing Starship..."
+  curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir "$LOCAL_BIN" -y
+fi
+
+# 2. starship.toml の配置（インストールの有無に関わらず、常に最新を同期）
+echo "Configuring Starship..."
+mkdir -p "$HOME/.config"
+
+# パターンA：単純にファイルをコピーする場合
+cp "$HOME/.dotfiles/starship.toml" "$HOME/.config/starship.toml"
