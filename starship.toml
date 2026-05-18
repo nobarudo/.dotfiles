@@ -31,7 +31,6 @@ format = "([](fg:bright-black)[on   $branch ]($style))"
 [git_status]
 style = "bg:bright-black fg:yellow bold"
 format = "([［$all_status$ahead_behind］]($style))"
-show_count = true
 conflicted = "⚑ "
 ahead = "⇡${count}"
 behind = "⇣${count}"
