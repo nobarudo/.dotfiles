@@ -26,14 +26,15 @@ fish_style_pwd_dir_length = 1
 
 [git_branch]
 style = "bg:bright-black fg:blue bold"
-format = "[](fg:bright-black)[on   $branch $git_status]($style)"
+format = "([](fg:bright-black)[on   $branch ]($style))"
 
 [git_status]
 style = "bg:bright-black fg:yellow bold"
 format = "([［$all_status$ahead_behind］]($style))"
+show_count = true
 conflicted = "⚑ "
-ahead = "⇡ ${count}"
-behind = "⇣ ${count}"
+ahead = "⇡${count}"
+behind = "⇣${count}"
 diverged = "⇕ "
 untracked = "? "
 stashed = " "
@@ -44,7 +45,8 @@ deleted = "✘ "
 
 [git_metrics]
 disabled = false
-format = '[󰦒 ](bg:bright-black fg:blue)[+$added](bg:bright-black fg:green)[-$deleted](bg:bright-black fg:blue)[](fg:bright-black)'
+only_nonzero_diffs = true
+format = "([󰦒 ](bg:bright-black fg:blue)[+$added](bg:bright-black fg:green)[-$deleted ](bg:bright-black fg:blue))[](fg:bright-black)"
 
 [fill]
 symbol = " "
