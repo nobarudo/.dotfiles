@@ -4,7 +4,7 @@
 add_newline = true
 
 format = """
-$os$directory $git_branch$git_status$git_metrics $rust$nodejs$golang$c$fill$cmd_duration $time
+$os$directory $git_branch$git_status$git_metrics $rust$nodejs$golang$c$fill$cmd_duration $hostname $time
 $character"""
 
 right_format = """"""
@@ -63,6 +63,12 @@ format = '[󰎙  $version](bold green) '
 
 [rust]
 format = '[  $version](red bold)'
+
+[hostname]
+ssh_only = true
+format = '[$ssh_symbol](bold blue) on [$hostname](bold red) '
+trim_at = '.companyname.com'
+disabled = false
 
 [cmd_duration]
 min_time = 2000 
