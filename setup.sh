@@ -24,20 +24,6 @@ if ! grep -q "zoxide init" "$ZSHRC_REAL"; then
   echo "$ZOXIDE_INIT" >>"$ZSHRC_REAL"
 fi
 
-if [ ! -d "$P10K_DIR" ]; then
-  echo "Installing Powerlevel10k..."
-  mkdir -p "$PLUGIN_DIR"
-
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$P10K_DIR"
-fi
-
-P10K_SOURCE="source $P10K_DIR/powerlevel10k.zsh-theme"
-if ! grep -q "powerlevel10k.zsh-theme" "$ZSHRC_REAL"; then
-  echo "Adding Powerlevel10k to $ZSHRC_REAL"
-  echo "$P10K_SOURCE" >>"$ZSHRC_REAL"
-  echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >>"$ZSHRC_REAL"
-fi
-
 if ! command -v starship &>/dev/null; then
   echo "Installing Starship..."
   curl -sS https://starship.rs/install.sh | sh -s -- --bin-dir "$LOCAL_BIN" -y
