@@ -10,6 +10,8 @@
     fzf
     zoxide
     starship
+    lazygit
+    neovim
   ];
 
   programs.home-manager.enable = true;
