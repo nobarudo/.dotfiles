@@ -1,4 +1,4 @@
-# ~/.config/home-manager/flake.nix
+# ~/.dotfiles/flake.nix
 {
   description = "Home Manager configuration of nobarudo";
 
