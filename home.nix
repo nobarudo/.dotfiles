@@ -5,6 +5,8 @@
   home.homeDirectory = "/Users/nobarudo";
 
   home.packages = with pkgs; [
+    git
+    curl
     fzf
     zoxide
     starship
