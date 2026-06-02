@@ -32,6 +32,11 @@
     enable = true;
     enableZshIntegration = true;
   };
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
 
   home.file.".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/.dotfiles/starship.toml";
   home.stateVersion = "23.11"; 
