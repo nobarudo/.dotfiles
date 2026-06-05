@@ -1,9 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  home.username = "nobarudo";
-  home.homeDirectory = "/Users/nobarudo";
-
   home.packages = with pkgs; [
     git
     curl
