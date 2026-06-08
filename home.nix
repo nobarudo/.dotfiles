@@ -5,6 +5,7 @@
     git
     curl
     htop
+    bottom
     nb
     fzf
     zoxide
