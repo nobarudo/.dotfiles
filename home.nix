@@ -18,7 +18,7 @@
 
   programs.zsh = {
     enable = true;
-    initExtra = ''
+    initContent = ''
       export PATH="$PATH:$HOME/go/bin"
       source ~/.dotfiles/.zshrc
     '';
