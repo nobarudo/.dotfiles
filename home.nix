@@ -4,6 +4,8 @@
   home.packages = with pkgs; [
     git
     curl
+    htop
+    nb
     fzf
     zoxide
     starship
