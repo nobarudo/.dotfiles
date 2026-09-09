@@ -17,11 +17,26 @@
 
   programs.home-manager.enable = true;
 
-  programs.zsh = {
+programs.zsh = {
     enable = true;
-    initContent = ''
+    initExtra = ''
+      # 1. macOS特有のNix環境読み込み（最優先で実行）
+      if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+      fi
+
+      # 2. パスの追加
+      export PATH="$HOME/.nix-profile/bin:$PATH"
       export PATH="$PATH:$HOME/go/bin"
-      source ~/.dotfiles/.zshrc
+
+      # 3. 外部設定ファイルの読み込み
+      if [ -f ~/.dotfiles/.zshrc ]; then
+        source ~/.dotfiles/.zshrc
+      fi
+
+      if [ -f ~/.zshrc.local ]; then
+        source ~/.zshrc.local
+      fi
     '';
   };
 
