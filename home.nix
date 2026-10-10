@@ -13,6 +13,7 @@
     lazygit
     neovim
     go
+    semgrep
   ];
 
   programs.home-manager.enable = true;
